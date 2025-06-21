@@ -1,4 +1,5 @@
 import Blog from '../models/Blog.js';
+import bcrypt from 'bcryptjs';
 
 // Get all posts
 export const getAllBlogs = async (req, res) => {
@@ -42,15 +43,19 @@ export const createBlog = async (req, res) => {
 
 
   try {
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
     const newBlog = new Blog({
       title,
       content,
-      password,
+      password: hashedPassword,
       authorName,
       authorProfilePicture,
       blogDescription,
       image,
-       category
+      category
     });
 
     await newBlog.save();
@@ -75,11 +80,18 @@ export const validatePassword = async (req, res) => {
       return res.status(404).json({ message: "Blog not found." });
     }
 
-    if (blog.password === password) {
-      return res.status(200).json({ message: "Password is correct!" });
+    console.log("given password:" + password);
+    console.log("blog password:" + blog.password);
+
+    const isMatch = await bcrypt.compare(password, blog.password);
+    if (!isMatch) {
+      console.log("password not match");
+      return res.status(403).json({ message: "Incorrect password!" });
     }
 
-    return res.status(403).json({ message: "Incorrect password!" });
+    console.log("password match");
+
+    return res.status(200).json({ message: "Password is correct!" });
   } catch (error) {
     return res.status(500).json({ message: "Server error", error: error.message });
   }
@@ -182,7 +194,8 @@ export const deleteBlog = async (req, res) => {
       return res.status(404).json({ message: "Blog not found" });
     }
 
-    if (blog.password !== password) {
+    const isMatch = await bcrypt.compare(password, blog.password);
+    if (!isMatch) {
       return res.status(403).json({ message: "Incorrect password" });
     }
 

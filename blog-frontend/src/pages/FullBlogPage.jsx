@@ -5,6 +5,15 @@ import { CalendarDays, Heart, Pencil, Trash } from "lucide-react";
 import defaultImage from "../assets/Blog_default.jpeg";
 import defaultProfile from "../assets/profile_default.webp";
 import Modal from "../components/Modal";
+import defaultTech from "../assets/default_tech.jpeg";
+import defaultHealth from "../assets/default_health.avif";
+import defaultFinance from "../assets/default_finance.webp";
+import defaultTravel from "../assets/default_traveljpg.jpg";
+import defaultLifestyle from "../assets/default_lifestyle.avif";
+import defaultEducation from "../assets/default_education.jpg";
+import defaultPersonal from "../assets/default_personal.jpeg";
+import defaultFashion from "../assets/default_fashion.avif";
+import defaultFood from "../assets/default_food.avif";
 
 const FullBlogPage = () => {
   const { id } = useParams();
@@ -141,6 +150,17 @@ const FullBlogPage = () => {
   Food: "bg-orange-100 text-orange-700",
 };
 
+const categoryImages = {
+  Tech: defaultTech,
+  "Health & Fitness": defaultHealth,
+  Finance: defaultFinance,
+  Travel: defaultTravel,
+  Lifestyle: defaultLifestyle,
+  Education: defaultEducation,
+  Personal: defaultPersonal,
+  "Fashion & Beauty": defaultFashion,
+  Food: defaultFood,
+};
 
   return (
       <div className="bg-gray-400 min-h-screen">
@@ -204,14 +224,10 @@ const FullBlogPage = () => {
 
       {/* Blog Image */}
       <img
-  src={
-    image
-      ? `http://localhost:5000/${image}`
-      : defaultImage
-  }
-  alt={title}
-  className="w-full h-96 object-cover rounded-xl mb-6"
-/>
+        src={blog.image ? `http://localhost:5000/${blog.image}` : categoryImages[blog.category] || defaultPersonal}
+        alt={blog.title}
+        className="w-full h-48 object-cover rounded-xl"
+      />
 
 
       {/* Content */}
