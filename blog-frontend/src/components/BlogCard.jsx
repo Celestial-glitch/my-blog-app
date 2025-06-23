@@ -14,8 +14,8 @@ import defaultPersonal from "../assets/default_personal.jpeg";
 import defaultFashion from "../assets/default_fashion.avif";
 import defaultFood from "../assets/default_food.avif";
 
-
 const BlogCard = ({ blog }) => {
+  //blog as a prop
   const navigate = useNavigate();
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(blog.likes);
@@ -58,29 +58,31 @@ const BlogCard = ({ blog }) => {
   };
 
   const categoryImages = {
-  Tech: defaultTech,
-  "Health & Fitness": defaultHealth,
-  Finance: defaultFinance,
-  Travel: defaultTravel,
-  Lifestyle: defaultLifestyle,
-  Education: defaultEducation,
-  Personal: defaultPersonal,
-  "Fashion & Beauty": defaultFashion,
-  Food: defaultFood,
-};
-
+    Tech: defaultTech,
+    "Health & Fitness": defaultHealth,
+    Finance: defaultFinance,
+    Travel: defaultTravel,
+    Lifestyle: defaultLifestyle,
+    Education: defaultEducation,
+    Personal: defaultPersonal,
+    "Fashion & Beauty": defaultFashion,
+    Food: defaultFood,
+  };
 
   return (
     <div
       onClick={() => navigate(`/blogs/${blog._id}`)}
-      className="cursor-pointer w-[300px] h-[450px] bg-white rounded-2xl shadow-md overflow-hidden max-w-md mx-auto p-4 space-y-4 border"
+      className="cursor-pointer w-[300px] h-[480px] bg-white rounded-2xl shadow-md overflow-hidden max-w-md mx-auto p-4 space-y-4 border"
     >
       <img
-  src={blog.image ? `http://localhost:5000/${blog.image}` : categoryImages[blog.category] || defaultPersonal}
-  alt={blog.title}
-  className="w-full h-48 object-cover rounded-xl"
-/>
-
+        src={
+          blog.image
+            ? `http://localhost:5000/${blog.image}`
+            : categoryImages[blog.category] || defaultPersonal
+        }
+        alt={blog.title}
+        className="w-full h-48 object-cover rounded-xl"
+      />
 
       {blog.category && (
         <div
@@ -88,6 +90,8 @@ const BlogCard = ({ blog }) => {
             categoryColors[blog.category] || "bg-gray-100 text-gray-800"
           }`}
         >
+          {/* displays name of the category */}
+
           {blog.category}
         </div>
       )}

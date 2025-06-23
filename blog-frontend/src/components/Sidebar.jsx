@@ -1,87 +1,4 @@
-// // import React from 'react';
 
-// // const Sidebar = ({ categories, selectedCategory, onCategoryChange }) => {
-// //   return (
-// //     <aside className="w-64 bg-white shadow-md p-4 rounded-xl h-fit">
-// //       <h2 className="text-xl font-bold mb-4">Filter by Category</h2>
-// //       <ul className="space-y-2">
-// //         {categories.map((cat, idx) => (
-// //           <li key={idx}>
-// //             <button
-// //               onClick={() => onCategoryChange(cat)}
-// //               className={`w-full text-left px-4 py-2 rounded-md hover:bg-gray-200 ${
-// //                 selectedCategory === cat ? 'bg-gray-300 font-semibold' : ''
-// //               }`}
-// //             >
-// //               {cat}
-// //             </button>
-// //           </li>
-// //         ))}
-// //       </ul>
-// //     </aside>
-// //   );
-// // };
-
-// // export default Sidebar;
-// import React from 'react';
-
-// const Sidebar = ({ categories, selectedCategory, onCategoryChange }) => {
-//   return (
-//     <aside className="w-64 bg-white shadow-md p-6 rounded-xl h-fit">
-//       <h2 className="text-xl font-bold mb-6 text-gray-800">Filter by Category</h2>
-//       <ul className="space-y-3">
-//         {['All', ...categories].map((cat, idx) => (
-//           <li key={idx}>
-//             <button
-//               onClick={() => onCategoryChange(cat)}
-//               className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-200
-//                 ${
-//                   selectedCategory === cat
-//                     ? 'bg-blue-100 text-blue-700 font-semibold'
-//                     : 'hover:bg-gray-100 text-gray-700'
-//                 }`}
-//             >
-//               {cat}
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//     </aside>
-//   );
-// };
-
-// export default Sidebar;
-// import React from 'react';
-
-// const Sidebar = ({ categories, selectedCategory, onCategoryChange }) => {
-//   const allCategories = ['All', ...categories.filter(cat => !!cat)];
-
-//   return (
-//     <aside className="w-64 bg-white shadow-md p-6 rounded-xl h-fit">
-//       <h2 className="text-xl font-bold mb-6 text-gray-800">Filter by Category</h2>
-//       <ul className="space-y-2">
-//         {allCategories.map((cat, idx) => (
-//           <li key={idx}>
-//             <button
-//               onClick={() => onCategoryChange(cat)}
-//               className={`w-full text-left px-4 py-2 rounded-lg transition-all duration-200
-//                 ${
-//                   selectedCategory === cat
-//                     ? 'bg-blue-100 text-blue-700 font-semibold'
-//                     : 'hover:bg-gray-100 text-gray-700'
-//                 }`}
-//             >
-//               {cat}
-//             </button>
-//           </li>
-//         ))}
-//       </ul>
-//     </aside>
-//   );
-// };
-
-// export default Sidebar;
-import React from "react";
 const categoryColors = {
   Tech: "bg-blue-100 text-blue-700",
   "Health & Fitness": "bg-green-100 text-green-700",
@@ -95,7 +12,7 @@ const categoryColors = {
   All: "bg-slate-100 text-slate-700", // optional style for "All"
 };
 
-
+// props
 const Sidebar = ({
   categories,
   selectedCategory,
@@ -106,7 +23,7 @@ const Sidebar = ({
 }) => {
   return (
    
-    <aside className="w-full sm:w-60 lg:w-64 xl:w-72 bg-white shadow-md p-4 sm:p-6 rounded-xl space-y-4 sm:space-y-6">
+    <aside className="w-60 sm:w-60 lg:w-64 xl:w-72 bg-white shadow-md p-4 sm:p-6 rounded-xl space-y-4 sm:space-y-6">
  <div className="sticky top-0 bg-white z-10 pb-4">
       {/* Search Bar */}
       <input

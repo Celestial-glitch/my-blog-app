@@ -5,17 +5,21 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import BlogRoutes from './routes/BlogRoute.js';
 
-dotenv.config();
+dotenv.config();                      // load env variables
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// Serve static files
+// access images http://localhost:5000/uploads/photo1.jpg
+
 app.use('/uploads', express.static('uploads'));
 
-// Routes
+// all routes under /api
 app.use('/api', BlogRoutes);
+
+
+
 
 const PORT = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGO_URI, {

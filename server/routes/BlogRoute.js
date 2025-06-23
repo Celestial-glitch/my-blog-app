@@ -1,5 +1,5 @@
 import express from 'express';
-import { upload } from '../middleware/upload.js'; // ✅ Import from new file
+import { upload } from '../middleware/upload.js'; 
 import {
   getAllBlogs,
   getBlogById,

@@ -5,7 +5,6 @@ import BlogList from "./BlogList";
 const HomePage = () => {
   return (
     <div>
-      {/* <Navbar /> */}
       <HeroSection />
     </div>
   );

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BlogCard from "../components/BlogCard";
@@ -21,8 +20,8 @@ const BlogList = () => {
         setBlogs(res.data);
         setFilteredBlogs(res.data);
 
-        // Dynamically extract categories
-        const cats = [...new Set(res.data.map((blog) => blog.category))];
+        // Dynamically extract unique (set) categories
+        const cats = [...new Set(res.data.map((blog) => blog.category))]; //only category of blog
         setCategories(cats);
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -42,6 +41,8 @@ const BlogList = () => {
   //       : blogs.filter((blog) => blog.category === category)
   //   );
   // };
+
+
   // Combined filtering logic
   useEffect(() => {
     let result = blogs;
@@ -60,7 +61,8 @@ const BlogList = () => {
   }, [blogs, selectedCategory, searchQuery]);
 
   return (
-    <div className="p-4 sm:p-6 bg-gray-300 min-h-screen flex flex-col lg:flex-row gap-4 sm:gap-6">
+    
+    <div className="p-4 sm:p-6 bg-gray-300 min-h-screen flex flex-row gap-4 sm:gap-6">
       {/* Sidebar with search and add */}
       <Sidebar
         categories={categories}
@@ -88,7 +90,7 @@ const BlogList = () => {
           <div className="text-center text-gray-600">Loading...</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {filteredBlogs.map((blog) => (
+            {filteredBlogs.map((blog) => (                 //maps through filtered blogs and adds a blogcard for each
               <BlogCard key={blog._id} blog={blog} />
             ))}
           </div>

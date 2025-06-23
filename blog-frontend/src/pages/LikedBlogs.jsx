@@ -11,6 +11,9 @@ const LikedBlogsPage = () => {
       const likedIds = JSON.parse(localStorage.getItem("likedBlogs")) || [];
       console.log("Fetching liked blog IDs:", likedIds);
 
+
+
+      //Promise.all() to send multiple GET requests in parallel.
       try {
         const blogFetches = await Promise.all(
           likedIds.map(async (id) => {
@@ -46,6 +49,8 @@ const LikedBlogsPage = () => {
         <p className="text-center text-gray-400">No liked blogs yet.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {/* maps through liked blogs */}
           {likedBlogs.map((blog) => (
             <BlogCard key={blog._id} blog={blog} />
           ))}

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const BlogSchema = new mongoose.Schema({
+const BlogSchema = new mongoose.Schema({   //schema object
   title: { 
     type: String, 
     required: true 
@@ -10,7 +10,7 @@ const BlogSchema = new mongoose.Schema({
     required: true 
   },
   image: {
-    type: String 
+    type: String                //file path or url
   },
   password: { 
     type: String, 

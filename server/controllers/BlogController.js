@@ -1,7 +1,7 @@
 import Blog from '../models/Blog.js';
 import bcrypt from 'bcryptjs';
 
-// Get all posts
+// Get all posts       find all
 export const getAllBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find().select('-password');
@@ -11,7 +11,7 @@ export const getAllBlogs = async (req, res) => {
   }
 };
 
-// Get single post
+// Get single post      find one
 export const getBlogById = async (req, res) => {
   try {
     const blog = await Blog.findById(req.params.id).select('-password');

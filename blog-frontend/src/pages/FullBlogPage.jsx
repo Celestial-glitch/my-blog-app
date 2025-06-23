@@ -122,6 +122,9 @@ const FullBlogPage = () => {
 
   if (!blog) return <div className="text-center mt-20">Loading...</div>;
 
+
+
+  //without repeating blog.title, blog.content
   const {
     title,
     content,

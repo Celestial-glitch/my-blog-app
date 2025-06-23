@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 const BlogForm = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const editBlog = location.state?.blog;
+  const editBlog = location.state?.blog; //get blog object through navigation
 
   const [formData, setFormData] = useState({
     title: "",
@@ -41,7 +41,7 @@ const BlogForm = () => {
   }, [editBlog]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; //input field
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -62,6 +62,7 @@ const BlogForm = () => {
     if (authorImageFile) data.append("authorProfilePicture", authorImageFile);
 
     if (!editBlog) {
+      //edit or create
       try {
         await axios.post("http://localhost:5000/api/posts", data);
         alert("Blog created successfully!");
@@ -87,23 +88,6 @@ const BlogForm = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-400 to-white flex items-center justify-center p-4">
-      {/* Custom styles for placeholder text visibility */}
-      <style jsx>{`
-        input::placeholder,
-        textarea::placeholder,
-        select option[value=""][disabled] {
-          color: #6b7280; /* A darker gray, equivalent to text-gray-500 */
-          opacity: 1; /* Ensure full opacity in Firefox */
-        }
-        /* Style for selected default option in dropdown before user selects */
-        select:required:invalid {
-          color: #6b7280; /* Apply the darker gray to the "Select a category" text */
-        }
-        select option {
-          color: #1f2937; /* Ensure actual options are dark */
-        }
-      `}</style>
-
       <div className="max-w-4xl w-full mx-auto p-8 bg-white shadow-2xl rounded-xl">
         <h1 className="text-4xl font-extrabold mb-8 text-center text-gray-800">
           {!editBlog ? "Create New Blog Post" : "Edit Blog Post"}
